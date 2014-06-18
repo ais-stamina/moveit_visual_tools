@@ -27,6 +27,7 @@
   <build_depend>std_msgs</build_depend>
   <build_depend>moveit_msgs</build_depend>
   <build_depend>trajectory_msgs</build_depend>
+  <build_depend>graph_msgs </build_depend>
 
   <run_depend>moveit_ros_robot_interaction</run_depend>
   <run_depend>moveit_core</run_depend>
@@ -36,5 +37,5 @@
   <run_depend>std_msgs</run_depend>
   <run_depend>moveit_msgs</run_depend>
   <run_depend>trajectory_msgs</run_depend>
-
+  <run_depend>graph_msgs </run_depend>
 </package>

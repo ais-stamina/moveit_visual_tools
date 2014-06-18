@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(moveit_visual_tools)
 
-find_package(Eigen REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-address")
+set (CMAKE_MODULE_PATH /opt/ros/indigo/share/cmake_modules/cmake/Modules/ ${CMAKE_MODULE_PATH})
+MESSAGE(STATUS "CMAKE_MODULE_PATH: " ${CMAKE_MODULE_PATH}) 
+include_directories(${catkin_INCLUDE_DIRS})
+find_package(Eigen REQUIRED )
 find_package(Boost REQUIRED thread system)
 
 # Load catkin and all dependencies required for this package
@@ -18,6 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
   trajectory_msgs
 )
 
+include_directories(${EIGEN_INCLUDE_DIRS} ${graph_msgs_INCLUDE_DIRS})
 # Catkin
 catkin_package(
   LIBRARIES
@@ -52,11 +57,16 @@ add_library(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES} ${Boost_LIBRARIES}
 )
-
+add_dependencies(${PROJECT_NAME}
+		graph_msgs_gen_cpp
+)
 # Test executable
 add_executable(visual_tools_test src/visual_tools_test.cpp)
 target_link_libraries(visual_tools_test 
   ${catkin_LIBRARIES} ${PROJECT_NAME}
+)
+add_dependencies(visual_tools_test
+                graph_msgs_gen_cpp
 )
 
 # Install

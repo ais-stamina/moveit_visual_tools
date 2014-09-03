@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(moveit_visual_tools)
 
+find_package(cmake_modules REQUIRED)
 find_package(Eigen REQUIRED)
 find_package(Boost REQUIRED thread system)
 
